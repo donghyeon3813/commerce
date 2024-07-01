@@ -20,10 +20,13 @@ public class Member {
     @Id
     @Column(name = "MEMBER_UID")
     private Long memberUid;
-    @Column(name = "ID")
-    private String Id;
+    @Column(name = "EMAIL")
+    private String email;
     @Column(name = "password")
     private String password;
 
+    public void setPassword(String password) {
 
+        this.password = password;
+    }
 }
