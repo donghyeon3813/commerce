@@ -15,9 +15,12 @@ public class SecurityConfig {
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-        http.authorizeHttpRequests(authorize -> authorize.requestMatchers("/login","/create").permitAll())
-                .httpBasic(Customizer.withDefaults())
-                .formLogin(Customizer.withDefaults());
+        http
+                .csrf(csrf -> csrf.disable())  // CSRF 보호 비활성화
+                .authorizeHttpRequests(authorize -> authorize
+                        .requestMatchers("/login", "/api/order").permitAll()  // 이 경로들은 인증 없이 접근 허용
+                        .anyRequest().authenticated()  // 나머지 경로들은 인증 필요
+                );
         return http.build();
     }
 
