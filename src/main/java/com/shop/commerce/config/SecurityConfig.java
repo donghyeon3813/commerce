@@ -31,8 +31,9 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
+                .csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(authorize -> authorize
-                        .requestMatchers( "/login").permitAll()  // 이 경로들은 인증 없이 접근 허용
+                        .requestMatchers( "/login","/api/member").permitAll()  // 이 경로들은 인증 없이 접근 허용
                         .anyRequest().authenticated()  // 나머지 경로들은 인증 필요
                 )
                 .formLogin(Customizer.withDefaults());

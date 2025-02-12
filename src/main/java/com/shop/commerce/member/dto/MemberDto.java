@@ -11,7 +11,7 @@ public class MemberDto {
     private String name;
 
     public Member toEntity(PasswordEncoder passwordEncoder) {
-        return Member.builder().id(id).password(passwordEncoder.encode(password)).name(name).build();
+        return Member.createNewMember(id, passwordEncoder.encode(password), name);
     }
 
 }

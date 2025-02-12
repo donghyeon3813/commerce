@@ -36,10 +36,14 @@ public class Member extends BaseEntity implements UserDetails {
     private String role;
 
     @Builder
-    public Member(String id, String password, String name) {
+    private Member(String id, String password, String name) {
         this.id = id;
         this.password = password;
         this.name = name;
+    }
+
+    public static Member createNewMember(String id, String password, String name){
+        return Member.builder().id(id).password(password).name(name).build();
     }
 
     @Override
