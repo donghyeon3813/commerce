@@ -1,5 +1,6 @@
 package com.shop.commerce.entity;
 
+import com.shop.commerce.entity.common.BaseEntity;
 import jakarta.persistence.*;
 import lombok.*;
 

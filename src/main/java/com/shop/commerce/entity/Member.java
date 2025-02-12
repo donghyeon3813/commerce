@@ -1,5 +1,7 @@
 package com.shop.commerce.entity;
 
+import com.shop.commerce.entity.common.BaseEntity;
+import com.shop.commerce.entity.common.Role;
 import jakarta.persistence.*;
 import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
@@ -8,6 +10,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.List;
 
 @Entity
 @Getter
@@ -32,23 +35,24 @@ public class Member extends BaseEntity implements UserDetails {
     @Column(length = 100)
     private String name;
 
-    @Column(length = 5)
-    private String role;
+    @Enumerated(EnumType.STRING)
+    private Role role;
 
     @Builder
-    private Member(String id, String password, String name) {
+    private Member(String id, String password, String name, Role role) {
         this.id = id;
         this.password = password;
         this.name = name;
+        this.role = role;
     }
 
     public static Member createNewMember(String id, String password, String name){
-        return Member.builder().id(id).password(password).name(name).build();
+        return Member.builder().id(id).password(password).name(name).role(Role.USER).build();
     }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return Arrays.asList(new SimpleGrantedAuthority(role));
+        return List.of(new SimpleGrantedAuthority(role.getRoleName()));
     }
 
     @Override

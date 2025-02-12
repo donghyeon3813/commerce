@@ -22,8 +22,8 @@ public class MemberService implements UserDetailsService {
     private final PasswordEncoder passwordEncoder;
 
     @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        Optional<Member> member = memberRepository.findByName(username);
+    public UserDetails loadUserByUsername(String id) throws UsernameNotFoundException {
+        Optional<Member> member = memberRepository.findById(id);
         return member.orElseThrow(() -> new UsernameNotFoundException("User not found"));
     }
 
