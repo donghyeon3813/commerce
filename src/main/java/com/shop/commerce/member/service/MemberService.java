@@ -27,8 +27,11 @@ public class MemberService implements UserDetailsService {
     }
 
     public void createMember(MemberDto member) {
+        log.info("Creating member : {}", member);
         try {
-            log.info("Creating member : {}", member);
+            if (memberRepository.existsById(member.getId())) {
+                throw new IllegalArgumentException("Member already exists");
+            }
             memberRepository.save(member.toEntity(passwordEncoder));
         }catch (Exception e){
             throw new RuntimeException("Failed to save member");
