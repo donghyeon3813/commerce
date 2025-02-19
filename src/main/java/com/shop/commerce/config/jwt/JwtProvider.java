@@ -1,15 +1,20 @@
 package com.shop.commerce.config.jwt;
 
+import io.jsonwebtoken.Claims;
+import io.jsonwebtoken.JwtException;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.security.Keys;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.stereotype.Component;
 
 import java.nio.charset.StandardCharsets;
 import java.security.Key;
 import java.util.Date;
+import java.util.List;
 import java.util.stream.Collectors;
 
 @Component
@@ -23,9 +28,9 @@ public class JwtProvider {
             throw new IllegalArgumentException("Authentication 정보가 올바르지 않습니다.");
         }
 
-        String authorities = authentication.getAuthorities().stream()
+        List<String> authorities = authentication.getAuthorities().stream()
                 .map(GrantedAuthority::getAuthority)
-                .collect(Collectors.joining(","));
+                .collect(Collectors.toList());
 
         long now = System.currentTimeMillis();
         Date validity = new Date(now + EXPIRATION_TIME);
@@ -37,5 +42,27 @@ public class JwtProvider {
                 .setExpiration(validity) // 토큰 만료 시간
                 .signWith(key, SignatureAlgorithm.HS512) // 서명(Signature) 추가
                 .compact();
+    }
+
+    public boolean validateToken(String token) {
+        try {
+            Jwts.parserBuilder()
+                    .setSigningKey(key)
+                    .build()
+                    .parseClaimsJws(token);//token 검증
+            return true;
+        } catch (JwtException | IllegalArgumentException e) {
+            return false;
+        }
+    }
+
+    public Authentication getAuthentication(String token) {
+        Claims claims = Jwts.parserBuilder().setSigningKey(key).build().parseClaimsJws(token).getBody();
+        String username = claims.getSubject();
+        List<String> roles = (List<String>) claims.get("roles"); // 🔍 List<String>으로 캐스팅
+        List<GrantedAuthority> authorities = roles.stream()
+                .map(SimpleGrantedAuthority::new) // 🛠 String → SimpleGrantedAuthority 변환
+                .collect(Collectors.toList());
+        return new UsernamePasswordAuthenticationToken(username, null, authorities);
     }
 }
