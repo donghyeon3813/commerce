@@ -2,11 +2,13 @@ package com.shop.commerce.entity;
 
 import com.shop.commerce.entity.common.BaseEntity;
 import com.shop.commerce.entity.common.Role;
+import com.shop.commerce.member.dto.MemberUpdateRequest;
 import jakarta.persistence.*;
 import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 
 import java.util.Collection;
@@ -76,6 +78,15 @@ public class Member extends BaseEntity implements UserDetails {
     @Override
     public boolean isEnabled() {
         return UserDetails.super.isEnabled();
+    }
+
+    public void updateInfo(MemberUpdateRequest request, PasswordEncoder passwordEncoder) {
+        if (request.getName() != null) {
+            this.name = request.getName();
+        }
+        if (request.getNewPassword() != null) {
+            this.password = passwordEncoder.encode(request.getNewPassword());
+        }
     }
 }
 

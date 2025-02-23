@@ -1,5 +1,6 @@
 package com.shop.commerce.config.jwt;
 
+import com.shop.commerce.entity.Member;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.JwtException;
 import io.jsonwebtoken.Jwts;
@@ -28,6 +29,8 @@ public class JwtProvider {
             throw new IllegalArgumentException("Authentication 정보가 올바르지 않습니다.");
         }
 
+        Member member = (Member) authentication.getPrincipal();
+
         List<String> authorities = authentication.getAuthorities().stream()
                 .map(GrantedAuthority::getAuthority)
                 .collect(Collectors.toList());
@@ -36,7 +39,7 @@ public class JwtProvider {
         Date validity = new Date(now + EXPIRATION_TIME);
 
         return Jwts.builder()
-                .setSubject(authentication.getName()) // 사용자 ID
+                .setSubject(String.valueOf(member.getMemberUid())) // 사용자 ID
                 .claim("roles", authorities) // 권한 정보 추가
                 .setIssuedAt(new Date(now)) // 토큰 발행 시간
                 .setExpiration(validity) // 토큰 만료 시간

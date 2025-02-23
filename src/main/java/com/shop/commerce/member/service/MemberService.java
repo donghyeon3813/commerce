@@ -2,9 +2,13 @@ package com.shop.commerce.member.service;
 
 import com.shop.commerce.entity.Member;
 import com.shop.commerce.member.dto.MemberDto;
+import com.shop.commerce.member.dto.MemberUpdateRequest;
 import com.shop.commerce.member.repository.MemberRepository;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -38,4 +42,24 @@ public class MemberService implements UserDetailsService {
         }
 
     }
+
+    public void updateMemberInfo(MemberUpdateRequest request) {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        Long memberUid = Long.parseLong(authentication.getName());
+
+        Member member = memberRepository.findByMemberUid(memberUid)
+                .orElseThrow(() -> new IllegalArgumentException("Member not found"));
+
+        validateCurrentPassword(request.getCurrentPassword(), member.getPassword());
+
+        member.updateInfo(request, passwordEncoder);
+        memberRepository.save(member);
+    }
+
+    private void validateCurrentPassword(String inputPassword, String storedPassword) {
+        if (!passwordEncoder.matches(inputPassword, storedPassword)) {
+            throw new IllegalArgumentException("Current password is incorrect");
+        }
+    }
+
 }
