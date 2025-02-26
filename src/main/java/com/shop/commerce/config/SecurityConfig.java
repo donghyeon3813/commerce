@@ -29,7 +29,7 @@ public class SecurityConfig {
         http
                 .csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(authorize -> authorize
-                        .requestMatchers( "api/auth/login","/api/member").permitAll()  // 이 경로들은 인증 없이 접근 허용
+                        .requestMatchers( "api/auth/login","/api/member", "/api/product/").permitAll()  // 이 경로들은 인증 없이 접근 허용
                         .anyRequest().authenticated()  // 나머지 경로들은 인증 필요
                 )
                 .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);

@@ -1,23 +1,31 @@
 package com.shop.commerce.entity;
 
-import jakarta.persistence.*;
-import lombok.*;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonValue;
 
-@Entity
-@Getter
-@Setter
-@NoArgsConstructor
-@AllArgsConstructor
-@Builder
-@Table(name = "CATEGORY")
-public class Category {
+public enum Category {
+    TOPS("TOPS"),
+    BOTTOMS("BOTTOMS"),
+    OUTERWEAR("OUTERWEAR");
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "CATEGORY_UID")
-    private Long categoryUid;
+    private final String value;
 
-    @Column(name = "CATEGORY_NAME", nullable = false, length = 30)
-    private String categoryName;
+    Category(String value) {
+        this.value = value;
+    }
+
+    @JsonValue
+    public String getValue() {
+        return value;
+    }
+
+    @JsonCreator
+    public static Category fromValue(String value) {
+        for (Category category : values()) {
+            if (category.value.equalsIgnoreCase(value)) {
+                return category;
+            }
+        }
+        throw new IllegalArgumentException("잘못된 카테고리 값입니다: " + value);
+    }
 }
-

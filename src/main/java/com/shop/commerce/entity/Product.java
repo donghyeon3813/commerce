@@ -10,8 +10,6 @@ import java.math.BigDecimal;
 @Getter
 @Setter
 @NoArgsConstructor
-@AllArgsConstructor
-@Builder
 @Table(name = "PRODUCT")
 public class Product extends BaseEntity {
 
@@ -20,18 +18,29 @@ public class Product extends BaseEntity {
     @Column(name = "PRODUCT_UID")
     private Long productUid;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "CATEGORY_UID", nullable = false)
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
     private Category category;
 
-    @Column(nullable = false, length = 255)
+    @Column(nullable = false)
     private String name;
 
     @Column(nullable = false, precision = 10, scale = 2)
     private BigDecimal price;
 
-    @Column(nullable = true)
+    @Column
     private int stock;
 
+    @Builder
+    public Product(Category category, String name, BigDecimal price, int stock) {
+        this.category = category;
+        this.name = name;
+        this.price = price;
+        this.stock = stock;
+    }
+
+    public static Product createProduct(Category category, String name, BigDecimal price, int stock){
+        return new ProductBuilder().category(category).name(name).price(price).stock(stock).build();
+    }
 }
 

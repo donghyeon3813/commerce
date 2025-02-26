@@ -4,7 +4,6 @@ import com.shop.commerce.entity.Member;
 import com.shop.commerce.member.dto.MemberDto;
 import com.shop.commerce.member.dto.MemberUpdateRequest;
 import com.shop.commerce.member.repository.MemberRepository;
-import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.Authentication;
