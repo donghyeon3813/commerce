@@ -1,6 +1,7 @@
 package com.shop.commerce.entity;
 
 import com.shop.commerce.entity.common.BaseEntity;
+import com.shop.commerce.product.dto.ProductDto;
 import jakarta.persistence.*;
 import lombok.*;
 
