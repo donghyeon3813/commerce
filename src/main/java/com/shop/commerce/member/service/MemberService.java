@@ -61,4 +61,12 @@ public class MemberService implements UserDetailsService {
         }
     }
 
+    public Member getCurrentMember() {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        Long memberUid = Long.parseLong(authentication.getName());
+
+        return memberRepository.findByMemberUid(memberUid)
+                .orElseThrow(() -> new IllegalArgumentException("Member not found"));
+    }
+
 }

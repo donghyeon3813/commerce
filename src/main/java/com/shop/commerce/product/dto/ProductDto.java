@@ -12,6 +12,7 @@ import java.math.BigDecimal;
 @Getter
 @AllArgsConstructor
 public class ProductDto {
+    private Long productId;
     private Category category;
     private String name;
     private BigDecimal price;
@@ -19,6 +20,7 @@ public class ProductDto {
 
     public static ProductDto from(Product product) {
         return ProductDto.builder()
+                .productId(product.getProductUid())
                 .category(product.getCategory())
                 .name(product.getName())
                 .price(product.getPrice())

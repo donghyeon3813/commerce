@@ -29,4 +29,14 @@ public class Cart extends BaseEntity {
     @Column(nullable = true)
     private int quantity;
 
+    @Builder
+    public Cart(Member member, Product product, int quantity) {
+        this.member = member;
+        this.product = product;
+        this.quantity = quantity;
+    }
+
+    public static Cart createCart(Member member, Product product, int quantity) {
+        return Cart.builder().member(member).product(product).quantity(quantity).build();
+    }
 }

@@ -23,16 +23,12 @@ public class ProductController {
     @GetMapping
     private ResponseEntity<List<ProductDto>> getProduct() {
         try {
-            List<ProductDto> productDtos = getProductServiceProduct();
+            List<ProductDto> productDtos = productService.getProducts();
             return ResponseEntity.ok(productDtos);
         } catch (Exception e) {
             log.error("Error fetching products: {}", e.getMessage(), e);
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(Collections.emptyList());
         }
-    }
-
-    private List<ProductDto> getProductServiceProduct() {
-        return productService.getProduct();
     }
 
     @PostMapping

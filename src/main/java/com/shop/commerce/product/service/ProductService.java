@@ -1,5 +1,6 @@
 package com.shop.commerce.product.service;
 
+import com.shop.commerce.entity.Product;
 import com.shop.commerce.product.dto.ProductDto;
 import com.shop.commerce.product.dto.ProductRequest;
 import com.shop.commerce.product.repository.ProductRepository;
@@ -21,7 +22,10 @@ public class ProductService {
 
     }
 
-    public List<ProductDto> getProduct() {
+    public List<ProductDto> getProducts() {
         return productRepository.findAll().stream().map(ProductDto::from).toList();
+    }
+    public Product getProduct(Long id) {
+        return productRepository.findById(id).orElseThrow();
     }
 }
