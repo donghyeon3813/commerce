@@ -2,6 +2,7 @@ package com.shop.commerce.cart.service;
 
 import com.shop.commerce.cart.dto.CartRequest;
 import com.shop.commerce.cart.repository.CartRepository;
+import com.shop.commerce.config.jwt.JwtUtil;
 import com.shop.commerce.entity.Cart;
 import com.shop.commerce.entity.Member;
 import com.shop.commerce.entity.Product;
@@ -25,8 +26,7 @@ public class CartService {
 
     public List<Cart> getAllCarts() {
 
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        Long memberUid = Long.parseLong(authentication.getName());
+        Long memberUid = JwtUtil.getMemberUidFromToken();
         return cartRepository.findByMember_memberUid(memberUid);
     }
 

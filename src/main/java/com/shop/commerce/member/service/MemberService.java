@@ -1,5 +1,6 @@
 package com.shop.commerce.member.service;
 
+import com.shop.commerce.config.jwt.JwtUtil;
 import com.shop.commerce.entity.Member;
 import com.shop.commerce.member.dto.MemberDto;
 import com.shop.commerce.member.dto.MemberUpdateRequest;
@@ -43,8 +44,7 @@ public class MemberService implements UserDetailsService {
     }
 
     public void updateMemberInfo(MemberUpdateRequest request) {
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        Long memberUid = Long.parseLong(authentication.getName());
+        Long memberUid = JwtUtil.getMemberUidFromToken();
 
         Member member = memberRepository.findByMemberUid(memberUid)
                 .orElseThrow(() -> new IllegalArgumentException("Member not found"));
@@ -62,8 +62,7 @@ public class MemberService implements UserDetailsService {
     }
 
     public Member getCurrentMember() {
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        Long memberUid = Long.parseLong(authentication.getName());
+        Long memberUid = JwtUtil.getMemberUidFromToken();
 
         return memberRepository.findByMemberUid(memberUid)
                 .orElseThrow(() -> new IllegalArgumentException("Member not found"));
