@@ -1,14 +1,12 @@
-package com.shop.commerce.member.service;
+package com.shop.commerce.member.application;
 
 import com.shop.commerce.config.jwt.JwtUtil;
-import com.shop.commerce.entity.Member;
-import com.shop.commerce.member.dto.MemberDto;
-import com.shop.commerce.member.dto.MemberUpdateRequest;
+import com.shop.commerce.member.domain.Member;
+import com.shop.commerce.member.application.dto.MemberDto;
+import com.shop.commerce.member.application.dto.MemberUpdateRequest;
 import com.shop.commerce.member.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;

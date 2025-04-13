@@ -1,9 +1,8 @@
 package com.shop.commerce.cart.dto;
 
 import com.shop.commerce.entity.Cart;
-import com.shop.commerce.entity.Member;
+import com.shop.commerce.member.domain.Member;
 import com.shop.commerce.entity.Product;
-import com.shop.commerce.product.dto.ProductDto;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 import lombok.Getter;

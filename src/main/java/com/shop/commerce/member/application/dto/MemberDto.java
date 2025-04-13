@@ -1,6 +1,6 @@
-package com.shop.commerce.member.dto;
+package com.shop.commerce.member.application.dto;
 
-import com.shop.commerce.entity.Member;
+import com.shop.commerce.member.domain.Member;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 import lombok.Getter;

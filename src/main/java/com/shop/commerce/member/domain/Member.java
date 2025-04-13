@@ -1,8 +1,8 @@
-package com.shop.commerce.entity;
+package com.shop.commerce.member.domain;
 
 import com.shop.commerce.entity.common.BaseEntity;
 import com.shop.commerce.entity.common.Role;
-import com.shop.commerce.member.dto.MemberUpdateRequest;
+import com.shop.commerce.member.application.dto.MemberUpdateRequest;
 import jakarta.persistence.*;
 import lombok.*;
 import org.springframework.security.core.GrantedAuthority;

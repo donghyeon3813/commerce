@@ -1,6 +1,6 @@
 package com.shop.commerce.config.jwt;
 
-import com.shop.commerce.entity.Member;
+import com.shop.commerce.member.domain.Member;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.JwtException;
 import io.jsonwebtoken.Jwts;

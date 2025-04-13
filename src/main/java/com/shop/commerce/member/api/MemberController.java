@@ -1,8 +1,8 @@
-package com.shop.commerce.member.controller;
+package com.shop.commerce.member.api;
 
-import com.shop.commerce.member.dto.MemberDto;
-import com.shop.commerce.member.dto.MemberUpdateRequest;
-import com.shop.commerce.member.service.MemberService;
+import com.shop.commerce.member.application.dto.MemberDto;
+import com.shop.commerce.member.application.dto.MemberUpdateRequest;
+import com.shop.commerce.member.application.MemberService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;

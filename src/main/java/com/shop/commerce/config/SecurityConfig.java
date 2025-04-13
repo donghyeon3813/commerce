@@ -2,7 +2,7 @@ package com.shop.commerce.config;
 
 import com.shop.commerce.config.jwt.JwtAuthenticationFilter;
 import com.shop.commerce.config.jwt.JwtProvider;
-import com.shop.commerce.member.service.MemberService;
+import com.shop.commerce.member.application.MemberService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
