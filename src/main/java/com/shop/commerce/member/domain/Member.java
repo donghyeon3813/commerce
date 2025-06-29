@@ -2,8 +2,9 @@ package com.shop.commerce.member.domain;
 
 import com.shop.commerce.entity.common.BaseEntity;
 import com.shop.commerce.entity.common.Role;
-import com.shop.commerce.member.application.dto.MemberUpdateRequest;
+import com.shop.commerce.member.presentation.dto.MemberUpdateRequest;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
 import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -81,11 +82,19 @@ public class Member extends BaseEntity implements UserDetails {
     }
 
     public void updateInfo(MemberUpdateRequest request, PasswordEncoder passwordEncoder) {
+        validateCurrentPassword(passwordEncoder, request.getCurrentPassword());
+
         if (request.getName() != null) {
             this.name = request.getName();
         }
         if (request.getNewPassword() != null) {
             this.password = passwordEncoder.encode(request.getNewPassword());
+        }
+    }
+
+    private void validateCurrentPassword(PasswordEncoder passwordEncoder, String currentPassword) {
+        if (!passwordEncoder.matches(currentPassword, password)) {
+            throw new IllegalArgumentException("Current password is incorrect");
         }
     }
 }

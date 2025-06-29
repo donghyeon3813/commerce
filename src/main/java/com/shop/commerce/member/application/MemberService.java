@@ -2,9 +2,9 @@ package com.shop.commerce.member.application;
 
 import com.shop.commerce.config.jwt.JwtUtil;
 import com.shop.commerce.member.domain.Member;
-import com.shop.commerce.member.application.dto.MemberDto;
-import com.shop.commerce.member.application.dto.MemberUpdateRequest;
-import com.shop.commerce.member.repository.MemberRepository;
+import com.shop.commerce.member.presentation.dto.MemberDto;
+import com.shop.commerce.member.presentation.dto.MemberUpdateRequest;
+import com.shop.commerce.member.domain.MemberJpaRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -12,6 +12,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Optional;
 
@@ -19,7 +20,7 @@ import java.util.Optional;
 @Service
 @RequiredArgsConstructor
 public class MemberService implements UserDetailsService {
-    private final MemberRepository memberRepository;
+    private final MemberJpaRepository memberRepository;
     private final PasswordEncoder passwordEncoder;
 
     @Override
@@ -40,23 +41,14 @@ public class MemberService implements UserDetailsService {
         }
 
     }
-
+    @Transactional
     public void updateMemberInfo(MemberUpdateRequest request) {
         Long memberUid = JwtUtil.getMemberUidFromToken();
 
         Member member = memberRepository.findByMemberUid(memberUid)
                 .orElseThrow(() -> new IllegalArgumentException("Member not found"));
 
-        validateCurrentPassword(request.getCurrentPassword(), member.getPassword());
-
         member.updateInfo(request, passwordEncoder);
-        memberRepository.save(member);
-    }
-
-    private void validateCurrentPassword(String inputPassword, String storedPassword) {
-        if (!passwordEncoder.matches(inputPassword, storedPassword)) {
-            throw new IllegalArgumentException("Current password is incorrect");
-        }
     }
 
     public Member getCurrentMember() {

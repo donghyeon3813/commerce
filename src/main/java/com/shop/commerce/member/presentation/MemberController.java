@@ -1,7 +1,7 @@
-package com.shop.commerce.member.api;
+package com.shop.commerce.member.presentation;
 
-import com.shop.commerce.member.application.dto.MemberDto;
-import com.shop.commerce.member.application.dto.MemberUpdateRequest;
+import com.shop.commerce.member.presentation.dto.MemberDto;
+import com.shop.commerce.member.presentation.dto.MemberUpdateRequest;
 import com.shop.commerce.member.application.MemberService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
