@@ -1,7 +1,7 @@
-package com.shop.commerce.product.dto;
+package com.shop.commerce.product.presentation.dto;
 
 import com.shop.commerce.entity.Category;
-import com.shop.commerce.entity.Product;
+import com.shop.commerce.product.domain.Product;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;

@@ -2,6 +2,7 @@ package com.shop.commerce.entity;
 
 import com.shop.commerce.entity.common.BaseEntity;
 import com.shop.commerce.member.domain.Member;
+import com.shop.commerce.product.domain.Product;
 import jakarta.persistence.*;
 import lombok.*;
 

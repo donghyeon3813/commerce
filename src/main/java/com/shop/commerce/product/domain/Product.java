@@ -1,7 +1,7 @@
-package com.shop.commerce.entity;
+package com.shop.commerce.product.domain;
 
+import com.shop.commerce.entity.Category;
 import com.shop.commerce.entity.common.BaseEntity;
-import com.shop.commerce.product.dto.ProductDto;
 import jakarta.persistence.*;
 import lombok.*;
 

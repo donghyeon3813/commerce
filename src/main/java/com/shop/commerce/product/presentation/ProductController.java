@@ -1,8 +1,8 @@
-package com.shop.commerce.product.controller;
+package com.shop.commerce.product.presentation;
 
-import com.shop.commerce.product.dto.ProductDto;
-import com.shop.commerce.product.dto.ProductRequest;
-import com.shop.commerce.product.service.ProductService;
+import com.shop.commerce.product.presentation.dto.ProductDto;
+import com.shop.commerce.product.presentation.dto.ProductRequest;
+import com.shop.commerce.product.application.ProductService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

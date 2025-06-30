@@ -1,9 +1,9 @@
-package com.shop.commerce.product.service;
+package com.shop.commerce.product.application;
 
-import com.shop.commerce.entity.Product;
-import com.shop.commerce.product.dto.ProductDto;
-import com.shop.commerce.product.dto.ProductRequest;
-import com.shop.commerce.product.repository.ProductRepository;
+import com.shop.commerce.product.domain.Product;
+import com.shop.commerce.product.presentation.dto.ProductDto;
+import com.shop.commerce.product.presentation.dto.ProductRequest;
+import com.shop.commerce.product.domain.ProductRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

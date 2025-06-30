@@ -5,9 +5,9 @@ import com.shop.commerce.cart.repository.CartRepository;
 import com.shop.commerce.config.jwt.JwtUtil;
 import com.shop.commerce.entity.Cart;
 import com.shop.commerce.member.domain.Member;
-import com.shop.commerce.entity.Product;
+import com.shop.commerce.product.domain.Product;
 import com.shop.commerce.member.application.MemberService;
-import com.shop.commerce.product.service.ProductService;
+import com.shop.commerce.product.application.ProductService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
