@@ -1,8 +1,8 @@
-package com.shop.commerce.cart.controller;
+package com.shop.commerce.cart.presentation;
 
-import com.shop.commerce.cart.dto.CartRequest;
-import com.shop.commerce.cart.service.CartService;
-import com.shop.commerce.entity.Cart;
+import com.shop.commerce.cart.presentation.dto.CartRequest;
+import com.shop.commerce.cart.application.CartService;
+import com.shop.commerce.cart.domain.Cart;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;

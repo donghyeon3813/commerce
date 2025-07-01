@@ -1,4 +1,4 @@
-package com.shop.commerce.auth.request;
+package com.shop.commerce.auth.domain.dto;
 
 import lombok.Getter;
 

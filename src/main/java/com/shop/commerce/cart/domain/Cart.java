@@ -1,4 +1,4 @@
-package com.shop.commerce.entity;
+package com.shop.commerce.cart.domain;
 
 import com.shop.commerce.entity.common.BaseEntity;
 import com.shop.commerce.member.domain.Member;

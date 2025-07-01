@@ -1,4 +1,4 @@
-package com.shop.commerce.entity;
+package com.shop.commerce.product.domain;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;

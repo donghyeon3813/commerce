@@ -1,6 +1,6 @@
-package com.shop.commerce.cart.dto;
+package com.shop.commerce.cart.presentation.dto;
 
-import com.shop.commerce.entity.Cart;
+import com.shop.commerce.cart.domain.Cart;
 import com.shop.commerce.member.domain.Member;
 import com.shop.commerce.product.domain.Product;
 import jakarta.validation.constraints.NotBlank;

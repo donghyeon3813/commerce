@@ -1,6 +1,6 @@
 package com.shop.commerce.product.presentation.dto;
 
-import com.shop.commerce.entity.Category;
+import com.shop.commerce.product.domain.Category;
 import com.shop.commerce.product.domain.Product;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;

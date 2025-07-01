@@ -1,6 +1,6 @@
-package com.shop.commerce.auth.service;
+package com.shop.commerce.auth.application;
 
-import com.shop.commerce.auth.request.LoginRequest;
+import com.shop.commerce.auth.domain.dto.LoginRequest;
 import com.shop.commerce.config.jwt.JwtProvider;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;

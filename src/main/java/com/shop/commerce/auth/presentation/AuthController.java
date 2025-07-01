@@ -1,7 +1,7 @@
-package com.shop.commerce.auth.controller;
+package com.shop.commerce.auth.presentation;
 
-import com.shop.commerce.auth.request.LoginRequest;
-import com.shop.commerce.auth.service.AuthService;
+import com.shop.commerce.auth.domain.dto.LoginRequest;
+import com.shop.commerce.auth.application.AuthService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;

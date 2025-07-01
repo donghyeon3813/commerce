@@ -1,9 +1,9 @@
-package com.shop.commerce.cart.service;
+package com.shop.commerce.cart.application;
 
-import com.shop.commerce.cart.dto.CartRequest;
-import com.shop.commerce.cart.repository.CartRepository;
+import com.shop.commerce.cart.presentation.dto.CartRequest;
+import com.shop.commerce.cart.domain.CartRepository;
 import com.shop.commerce.config.jwt.JwtUtil;
-import com.shop.commerce.entity.Cart;
+import com.shop.commerce.cart.domain.Cart;
 import com.shop.commerce.member.domain.Member;
 import com.shop.commerce.product.domain.Product;
 import com.shop.commerce.member.application.MemberService;
